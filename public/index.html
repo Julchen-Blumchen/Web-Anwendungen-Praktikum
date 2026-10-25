@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Entdecke Konzerte, Festivals und weitere Events in deiner Region mit EventHub.">
+
+  <title>EventHub – Deine Events in deiner Region</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <div class="site-wrapper">
+
+    <!-- Kopfbereich -->
+    <header class="site-header">
+      <a class="logo"
+         href="index.html"
+         aria-label="EventHub – Startseite">
+
+        <svg class="logo-icon"
+             viewBox="0 0 32 24"
+             fill="none"
+             aria-hidden="true">
+          <g transform="rotate(-18 16 12)">
+            <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z" />
+            <path d="M21 6v3m0 2v2m0 2v3" />
+          </g>
+        </svg>
+
+        <span>EventHub</span>
+      </a>
+
+      <nav class="navigation" aria-label="Hauptnavigation">
+        <a href="impressum.html">Impressum</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </header>
+
+    <main id="inhalt">
+
+      <!-- Titelbild und Bundeslandauswahl -->
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image"
+             src="images/Startseite_Bild.png"
+             alt=""
+             fetchpriority="high">
+
+        <div class="hero-content">
+          <h1 id="hero-title">
+            Deine Events<br>
+            in deiner Region.
+          </h1>
+
+          <p>
+            Konzerte, Festivals und mehr – einfach Tickets finden.
+          </p>
+
+          <label class="region-filter" for="bundesland">
+            <svg class="location-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 aria-hidden="true">
+              <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+              <circle cx="12" cy="10" r="2" />
+            </svg>
+
+            <span class="sr-only">
+              Events nach Bundesland filtern
+            </span>
+
+            <select id="bundesland" name="bundesland">
+              <option value="">Bundesland auswählen</option>
+              <option value="Baden-Württemberg">Baden-Württemberg</option>
+              <option value="Bayern">Bayern</option>
+              <option value="Berlin">Berlin</option>
+              <option value="Brandenburg">Brandenburg</option>
+              <option value="Bremen">Bremen</option>
+              <option value="Hamburg">Hamburg</option>
+              <option value="Hessen">Hessen</option>
+              <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+              <option value="Niedersachsen">Niedersachsen</option>
+              <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+              <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+              <option value="Saarland">Saarland</option>
+              <option value="Sachsen">Sachsen</option>
+              <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+              <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+              <option value="Thüringen">Thüringen</option>
+            </select>
+
+            <svg class="chevron-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </label>
+        </div>
+      </section>
+
+      <!-- Drei Eventkacheln -->
+      <section class="events" aria-label="Verfügbare Events">
+        <div class="event-grid">
+
+          <article class="event-card"
+                   data-bundesland="Baden-Württemberg">
+
+            <img class="event-image"
+                 src="images/Eventbild_1.png"
+                 alt="Rockband mit Gitarren auf einer Bühne vor jubelndem Publikum"
+                 width="1448"
+                 height="1086"
+                 loading="lazy">
+
+            <div class="event-content">
+              <time class="event-date" datetime="2027-04-17">
+                17. Apr. 2027
+              </time>
+
+              <h2>Rock Night</h2>
+              <p class="event-city">Stuttgart</p>
+              <p class="event-price">59,90 €</p>
+
+              <a class="details-button"
+                 href="event.html?id=rock-night"
+                 aria-label="Details zu Rock Night">
+                Details
+              </a>
+            </div>
+          </article>
+
+          <article class="event-card"
+                   data-bundesland="Baden-Württemberg">
+
+            <img class="event-image"
+                 src="images/Eventbild_2.png"
+                 alt="Besucher an beleuchteten Foodtrucks und Essensständen am Abend"
+                 width="1448"
+                 height="1086"
+                 loading="lazy">
+
+            <div class="event-content">
+              <time class="event-date" datetime="2027-05-08">
+                08. Mai 2027
+              </time>
+
+              <h2>Streetfood Festival</h2>
+              <p class="event-city">Mannheim</p>
+              <p class="event-price">14,90 €</p>
+
+              <a class="details-button"
+                 href="event.html?id=streetfood-festival"
+                 aria-label="Details zum Streetfood Festival">
+                Details
+              </a>
+            </div>
+          </article>
+
+          <article class="event-card"
+                   data-bundesland="Baden-Württemberg">
+
+            <img class="event-image"
+                 src="images/Eventbild_4.png"
+                 alt="Zuschauer auf einer Wiese vor einer Kinoleinwand unter freiem Himmel"
+                 width="1448"
+                 height="1086"
+                 loading="lazy">
+
+            <div class="event-content">
+              <time class="event-date" datetime="2027-06-19">
+                19. Juni 2027
+              </time>
+
+              <h2>Open-Air-Kino</h2>
+              <p class="event-city">Freiburg</p>
+              <p class="event-price">12,90 €</p>
+
+              <a class="details-button"
+                 href="event.html?id=open-air-kino"
+                 aria-label="Details zum Open-Air-Kino">
+                Details
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <p id="filter-status"
+           class="sr-only"
+           role="status"
+           aria-live="polite"></p>
+
+        <p id="keine-events" class="empty-message" hidden>
+          Für dieses Bundesland gibt es aktuell keine Events.
+          Wähle „Bundesland auswählen“, um wieder alle drei
+          Beispiel-Events zu sehen.
+        </p>
+      </section>
+    </main>
+
+    <!-- Fußbereich -->
+    <footer class="site-footer">
+      <p>© 2026 EventHub</p>
+
+      <nav class="navigation" aria-label="Fußnavigation">
+        <a href="impressum.html">Impressum</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <!-- Kleine JavaScript-Funktion für den Bundeslandfilter -->
+  <script>
+    const bundesland = document.querySelector('#bundesland');
+    const kacheln = document.querySelectorAll('.event-card');
+
+    bundesland.addEventListener('change', () => {
+      let anzahl = 0;
+
+      kacheln.forEach(kachel => {
+        const passt =
+          !bundesland.value ||
+          kachel.dataset.bundesland === bundesland.value;
+
+        kachel.hidden = !passt;
+
+        if (passt) {
+          anzahl++;
+        }
+      });
+
+      document.querySelector('#keine-events').hidden = anzahl > 0;
+
+      document.querySelector('#filter-status').textContent =
+        `${anzahl} Events gefunden.`;
+    });
+  </script>
+</body>
+</html>
