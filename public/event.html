@@ -6,77 +6,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Eventdetails | EventHub</title>   
+    <meta name="description"
+          content="Entdecke alle Informationen zu deinem Event bei EventHub.">
 
-   <link rel="stylesheet" href="css/style.css">
+    <title>Eventdetails – EventHub</title>
 
-    <!-- CSS nur für diese Seite -->
-    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="detail-seite">
+<body>
 
-    <!-- HEADER -->
-    <header class="detail-header">
-        <a href="index.html" class="detail-logo">
-            🎟 EventHub
-        </a>
-    </header>
+    <a class="skip-link" href="#inhalt">
+        Zum Inhalt springen
+    </a>
 
-    <!-- HAUPTINHALT -->
-    <main class="detail-main">
+    <div class="site-wrapper">
 
-        <!-- Zurück zur Startseite -->
-        <a href="index.html" class="detail-zurueck">
-            ← Zurück zur Übersicht
-        </a>
-        <br> 
+        <!-- HEADER: wie auf der Startseite -->
+        <header class="site-header">
 
-        <!-- Eventbild -->
-        <img
-            src="images/sunset-festival.png"
-            alt="Besucher bei einem Konzert"
-            class="detail-bild"
-        >
+            <a class="logo"
+               href="index.html"
+               aria-label="EventHub – Startseite">
 
-        <!-- Eventname -->
-        <h1>Sunset Festival</h1>
+                <svg class="logo-icon"
+                     viewBox="0 0 32 24"
+                     fill="none"
+                     aria-hidden="true">
 
-        <!-- Eventinformationen -->
-        <section class="detail-infos">
-            <p><span style="color: #f36b21;">📅</span> 12. April 2027</p>
-            <p><span style="color: #f36b21;">📍</span> MHP Arena, Stuttgart</p>
-            <p><span style="color: #f36b21;">🎟️</span> 59,90 € pro Ticket</p>
-        </section>
+                    <g transform="rotate(-18 16 12)">
+                        <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/>
+                        <path d="M21 6v3m0 2v2m0 2v3"/>
+                    </g>
+                </svg>
 
-        <!-- Beschreibung -->
-        <section class="detail-beschreibung">
-            <p>
-                Das Sunset Festival bringt internationale
-                Künstler auf die Bühne und sorgt für
-                einen unvergesslichen Tag voller Musik
-                und guter Stimmung.
-            </p>
-        </section>
+                <span>EventHub</span>
+            </a>
 
-        <!-- Button zur Buchungsseite -->
-        <a href="buchung.html" class="detail-button">
-             Ticket buchen →
-        </a>
+        </header>
 
-    </main>
 
-    <!-- FOOTER -->
-    <footer class="detail-footer">
-        <p>© 2026 EventHub</p>
+        <!-- HAUPTINHALT -->
+        <main id="inhalt" class="event-detail">
 
-        <nav aria-label="Rechtliche Informationen">
-            <a href="impressum.html">Impressum</a>
-            <a href="kontakt.html">Kontakt</a>
-            <a href="agb.html">AGB</a>
-            <a href="datenschutz.html">Datenschutz</a>
-        </nav>
-    </footer>
+            <a href="index.html" class="detail-zurueck">
+                ← Zurück zur Übersicht
+            </a>
+
+            <!-- Eventbild -->
+            <img
+                id="detail-bild"
+                class="detail-bild"
+                src="images/Eventbild_1.png"
+                alt="Rockband auf einer Bühne"
+            >
+
+            <!-- Eventname -->
+            <h1 id="detail-name">Rock Night</h1>
+
+
+            <!-- Eventinformationen -->
+            <section class="detail-infos"
+                     aria-label="Eventinformationen">
+
+                <!-- Datum -->
+                <p>
+                    <svg class="detail-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="16" rx="2"/>
+                        <path d="M7 3v4M17 3v4M3 10h18"/>
+                        <path d="M7 14h2M12 14h2M7 18h2M12 18h2"/>
+                    </svg>
+
+                    <time id="detail-datum" datetime="2027-04-17">
+                        17. April 2027
+                    </time>
+                </p>
+
+                <!-- Veranstaltungsort -->
+                <p>
+                    <svg class="detail-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                        <circle cx="12" cy="10" r="2.5"/>
+                    </svg>
+
+                    <span id="detail-ort">
+                        Stuttgart
+                    </span>
+                </p>
+
+                <!-- Ticketpreis -->
+                <p>
+                    <svg class="detail-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         aria-hidden="true">
+                        <path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/>
+                        <path d="M15 6v3m0 2v2m0 2v3"/>
+                    </svg>
+
+                    <span id="detail-preis">
+                        59,90 € pro Ticket
+                    </span>
+                </p>
+
+            </section>
+
+
+            <!-- Beschreibung -->
+            <section class="detail-beschreibung"
+                     aria-label="Beschreibung">
+
+                <p id="detail-text">
+                    Erlebe einen unvergesslichen Abend
+                    mit Live-Musik und großartiger Stimmung.
+                </p>
+
+            </section>
+
+
+            <!-- Buchungsbutton -->
+            <a id="detail-buchen"
+               href="buchung.html?id=rock-night"
+               class="detail-button">
+
+                Ticket buchen →
+
+            </a>
+
+        </main>
+
+
+        <!-- FOOTER: wie auf der Startseite -->
+        <footer class="site-footer">
+
+            <p>© 2026 EventHub</p>
+
+            <nav class="navigation"
+                 aria-label="Fußnavigation">
+
+                <a href="impressum.html">Impressum</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="agb.html">AGB</a>
+                <a href="datenschutz.html">Datenschutz</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+
+    <!-- Eventdaten für den Frontend-Prototyp -->
+    <script>
+        const events = {
+            "rock-night": {
+                name: "Rock Night",
+                datum: "17. April 2027",
+                datumISO: "2027-04-17",
+                ort: "Stuttgart",
+                preis: "59,90 €",
+                bild: "images/Eventbild_1.png",
+                bildAlt: "Rockband auf einer Bühne",
+                beschreibung:
+                    "Erlebe einen unvergesslichen Abend " +
+                    "mit mitreißender Rockmusik und " +
+                    "großartiger Stimmung."
+            },
+
+            "streetfood-festival": {
+                name: "Streetfood Festival",
+                datum: "08. Mai 2027",
+                datumISO: "2027-05-08",
+                ort: "Mannheim",
+                preis: "14,90 €",
+                bild: "images/Eventbild_2.png",
+                bildAlt: "Besucher an Foodtrucks",
+                beschreibung:
+                    "Entdecke leckere Spezialitäten " +
+                    "aus aller Welt und genieße " +
+                    "einen abwechslungsreichen Tag."
+            },
+
+            "open-air-kino": {
+                name: "Open-Air-Kino",
+                datum: "19. Juni 2027",
+                datumISO: "2027-06-19",
+                ort: "Freiburg",
+                preis: "12,90 €",
+                bild: "images/Eventbild_4.png",
+                bildAlt: "Kinoleinwand unter freiem Himmel",
+                beschreibung:
+                    "Genieße einen besonderen Kinoabend " +
+                    "unter freiem Himmel in entspannter " +
+                    "Atmosphäre."
+            }
+        };
+
+        // Event-ID aus der Adresse lesen
+        const parameter = new URLSearchParams(window.location.search);
+        const eventID = parameter.get("id") || "rock-night";
+
+        // Passendes Event auswählen
+        const event = Object.hasOwn(events, eventID)
+            ? events[eventID]
+            : null;
+
+        if (event) {
+            document.querySelector("#detail-name").textContent =
+                event.name;
+
+            const datum = document.querySelector("#detail-datum");
+            datum.textContent = event.datum;
+            datum.dateTime = event.datumISO;
+
+            document.querySelector("#detail-ort").textContent =
+                event.ort;
+
+            document.querySelector("#detail-preis").textContent =
+                event.preis + " pro Ticket";
+
+            document.querySelector("#detail-text").textContent =
+                event.beschreibung;
+
+            const bild = document.querySelector("#detail-bild");
+            bild.src = event.bild;
+            bild.alt = event.bildAlt;
+
+            document.querySelector("#detail-buchen").href =
+                "buchung.html?id=" + encodeURIComponent(eventID);
+
+            document.title = event.name + " – EventHub";
+        } else {
+            document.querySelector("#detail-name").textContent =
+                "Event nicht gefunden";
+
+            document.querySelector("#detail-bild").hidden = true;
+            document.querySelector(".detail-infos").hidden = true;
+            document.querySelector(".detail-beschreibung").hidden = true;
+            document.querySelector("#detail-buchen").hidden = true;
+        }
+    </script>
 
 </body>
 </html>

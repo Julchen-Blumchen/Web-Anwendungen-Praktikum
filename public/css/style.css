@@ -439,143 +439,144 @@ select:focus-visible {
   }
 }
 
-/* Gesamte Detailseite */
-.detail-seite {
-    margin: 0;
-    background-color: #ffffff;
-    color: #1f2937;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
 
+/* ===================================== */
+/* EVENTDETAILSEITE                      */
+/* ===================================== */
 
-/* Header mit Logo */
-.detail-header {
-    background-color: #f8f2eb;
-    padding: 20px 8%;
-    border-bottom: 1px solid #eee;
-}
-
-.detail-logo {
-    color: #100f0f;
-    font-size: 26px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-/* Hauptbereich */
-.detail-main {
+/* Hauptinhalt */
+.event-detail {
     max-width: 800px;
-    margin: 35px auto;
-    padding: 0 20px 40px 20px;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    flex: 1;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
 }
 
-/* Zurück-Link */
+/* Zurück zur Übersicht */
 .detail-zurueck {
     display: inline-block;
-    margin-bottom: 20px;
-    color: #f36b21;
-    text-decoration: none;
+    margin-bottom: 24px;
+    color: var(--muted);
+    font-size: 14px;
 }
 
-/* Großes Eventbild */
+.detail-zurueck:hover {
+    color: var(--orange);
+}
+
+/* Eventbild */
 .detail-bild {
     width: 100%;
-    height: 320px;
+    aspect-ratio: 16 / 9;
+    height: auto;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
-/* Überschrift */
-.detail-main h1 {
-    font-size: 34px;
-    margin-top: 25px;
-    margin-bottom: 20px;
+/* Eventname */
+.event-detail h1 {
+    margin: 24px 0 20px;
+    color: var(--text);
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
 }
 
-/* Datum, Ort und Preis */
+/* Eventinformationen */
 .detail-infos {
-    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .detail-infos p {
-    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-size: 16px;
+    color: var(--muted);
 }
 
-/* Beschreibung */
+/* Orangefarbene Icons */
+.detail-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+
+    color: var(--orange);
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Eventbeschreibung */
 .detail-beschreibung {
-    margin-top: 25px;
-    margin-bottom: 30px;
-    padding-top: 15px;
-    border-top: 1px solid #ddd;
-    font-size: 17px;
+    margin-top: 30px;
+    margin-bottom: 32px;
+}
+
+.detail-beschreibung p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
     line-height: 1.7;
 }
 
 /* Ticket buchen */
 .detail-button {
     display: block;
-    background-color: #f36b21;
+    width: 100%;
+    padding: 14px 20px;
+
+    background-color: var(--orange);
+    border-radius: 5px;
+
     color: white;
     text-align: center;
-    padding: 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 700;
+
+    transition: background-color 180ms ease;
 }
 
 .detail-button:hover {
-    background-color: #d95513;
+    background-color: var(--orange-hover);
 }
 
-/* Footer */
-.detail-footer {
-    background-color: #f8f2eb;
-    border-top: 1px solid #eee;
-    padding: 25px 8%;
-    margin-top: auto;
+/* Kleine Bildschirme */
+@media (max-width: 650px) {
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.detail-footer nav {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.detail-footer a {
-    color: #555;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.detail-footer a:hover {
-    color: #f36b21;
-}
-
-/* Anpassung für kleinere Bildschirme */
-@media (max-width: 600px) {
-    .detail-bild {
-        height: 220px;
+    .event-detail {
+        padding: 24px 18px 36px;
     }
 
-    .detail-main h1 {
+    .detail-bild {
+        aspect-ratio: 4 / 3;
+    }
+
+    .event-detail h1 {
+        margin-top: 20px;
         font-size: 28px;
     }
 
-    .detail-footer {
-        flex-direction: column;
-        text-align: center;
+    .detail-infos p {
+        font-size: 14px;
+    }
+
+    .detail-beschreibung p {
+        font-size: 14px;
+    }
+
+    .detail-button {
+        font-size: 14px;
+    }
+}
+
+/* Weniger Animationen bei entsprechender Systemeinstellung */
+@media (prefers-reduced-motion: reduce) {
+    .detail-button {
+        transition: none;
     }
 }
