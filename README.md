@@ -44,8 +44,9 @@ Installationen notwendig.
 
 ## Aufgabenverteilung
 
-- [Dein Name]: Gestaltung und Umsetzung der Startseite
-- [Name der Kommilitonin]: Gestaltung und Umsetzung der Eventdetailseite
+- Eleni: Gestaltung und Umsetzung der Startseite
+- Julia W.: Gestaltung und Umsetzung der Eventdetailseite
+- Julia H.: Zahlungsseite 
 
 ## Beispieldaten
 
