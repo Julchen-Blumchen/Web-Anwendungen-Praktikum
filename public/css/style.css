@@ -879,3 +879,116 @@ select:focus-visible {
     padding: 16px;
   }
 }
+
+/* ================================================ KONTAKTFORMULAR ================================================== */
+
+.kontakt-main > h1 {
+  margin-top: 0;
+}
+ 
+.kontakt-intro {
+  margin: 0 0 28px;
+  color: var(--muted);
+}
+ 
+.kontakt-formular {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.kontakt-feld {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.kontakt-feld label {
+  color: var(--muted);
+  font-size: 14px;
+}
+ 
+.kontakt-feld input,
+.kontakt-feld select,
+.kontakt-feld textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #ddd3c7;
+  border-radius: 6px;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+ 
+.kontakt-feld textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+ 
+.kontakt-feld input:focus-visible,
+.kontakt-feld select:focus-visible,
+.kontakt-feld textarea:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+ 
+.kontakt-feld select:invalid {
+  color: var(--muted);
+}
+
+.kontakt-feld select option {
+  color: var(--text);
+}
+
+/* Vorname und Nachname nebeneinander */
+.kontakt-zeile {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+ 
+.kontakt-feld--schmal {
+  max-width: calc(50% - 10px);
+}
+ 
+/* Datenschutzhinweis */
+.kontakt-hinweis {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+ 
+.kontakt-hinweis a {
+  color: var(--text);
+  text-decoration: underline;
+}
+ 
+.kontakt-hinweis a:hover {
+  color: var(--orange-hover);
+}
+ 
+.kontakt-formular .detail-button {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+ 
+/* Bestätigung nach dem Absenden (wie in .bestaetigung-bereich in Buchung) */
+.kontakt-bestaetigung .detail-button {
+  margin-top: 24px;
+}
+ 
+/* ---------- Kleine Bildschirme ---------- */
+ 
+@media (max-width: 650px) {
+  /* Vorname und Nachname untereinander */
+  .kontakt-zeile {
+    grid-template-columns: 1fr;
+  }
+ 
+  .kontakt-feld--schmal {
+    max-width: none;
+  }
+}
