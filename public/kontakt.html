@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Du hast Fragen zu einer Veranstaltung oder zur Buchung? Schreib uns eine Nachricht.">
+
+    <title>Kontakt – EventHub</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="site-wrapper">
+
+        <header class="site-header">
+
+            <a class="logo"
+               href="index.html"
+               aria-label="EventHub – Startseite">
+
+                <svg class="logo-icon"
+                     viewBox="0 0 32 24"
+                     fill="none"
+                     aria-hidden="true">
+
+                    <g transform="rotate(-18 16 12)">
+                        <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/>
+                        <path d="M21 6v3m0 2v2m0 2v3"/>
+                    </g>
+                </svg>
+
+                <span>EventHub</span>
+            </a>
+
+        </header>
+
+        <main id="inhalt" class="event-detail kontakt-main">
+
+            <h1>Kontakt</h1>
+            <div id="kontakt-bereich">
+
+                <p class="kontakt-intro">
+                    Du hast Fragen zu einer Veranstaltung oder zur Buchung?
+                    Wir sind gerne für dich da.
+                </p>
+
+                <!-- Kontaktformular -->
+                <form id="kontakt-formular" class="kontakt-formular">
+
+                    <!-- Anrede -->
+                    <div class="kontakt-feld kontakt-feld--schmal">
+                        <label for="kontakt-anrede">Anrede</label>
+                        <select id="kontakt-anrede" name="anrede" required>
+                            <option value="" disabled selected>Bitte wählen</option>
+                            <option value="frau">Frau</option>
+                            <option value="herr">Herr</option>
+                            <option value="divers">Divers</option>
+                            <option value="keine-angabe">Keine Angabe</option>
+                        </select>
+                    </div>
+
+                    <!-- Vor- und Nachname -->
+                    <div class="kontakt-zeile">
+
+                        <div class="kontakt-feld">
+                            <label for="kontakt-vorname">Vorname</label>
+                            <input type="text"
+                                id="kontakt-vorname"
+                                name="vorname"
+                                autocomplete="given-name"
+                                required>
+                        </div>
+
+                        <div class="kontakt-feld">
+                            <label for="kontakt-nachname">Nachname</label>
+                            <input type="text"
+                                id="kontakt-nachname"
+                                name="nachname"
+                                autocomplete="family-name"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="kontakt-feld">
+                        <label for="kontakt-email">E-Mail-Adresse</label>
+                        <input type="email"
+                            id="kontakt-email"
+                            name="email"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="kontakt-feld">
+                        <label for="kontakt-nachricht">Nachricht</label>
+                        <textarea id="kontakt-nachricht"
+                                name="nachricht"
+                                rows="6"
+                                placeholder="Deine Nachricht …"
+                                required></textarea>
+                    </div>
+
+                    <!-- Datenschutzhinweis -->
+                    <p class="kontakt-hinweis">
+                        Deine Daten verwenden wir ausschließlich zur Bearbeitung
+                        deiner Anfrage. Weitere Informationen findest du in unserer
+                        <a href="datenschutz.html">Datenschutzerklärung</a>.
+                    </p>
+
+                    <!-- Absenden -->
+                    <button type="submit" class="detail-button">
+                        Anfrage senden →
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- Nach Absenden der Nachricht: in der nächsten Zeile hidden einfügen damit erst danach die Bestätigung sichtbar wird -->
+            <section id="kontakt-bestaetigung" class="bestaetigung-bereich kontakt-bestaetigung">
+
+                <h2>Nachricht gesendet!</h2>
+                <p>
+                    Deine Nachricht wurde versendet und wir werden Dir zeitnah
+                    eine Rückmeldung geben. Bitte habe etwas Geduld.
+                </p>
+
+                <a href="index.html" class="detail-button">Zur Startseite →</a>
+
+            </section>
+
+
+        </main>
+
+
+        <footer class="site-footer">
+
+            <p>© 2026 EventHub</p>
+
+            <nav class="navigation"
+                 aria-label="Fußnavigation">
+
+                <a href="impressum.html">Impressum</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="agb.html">AGB</a>
+                <a href="datenschutz.html">Datenschutz</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>

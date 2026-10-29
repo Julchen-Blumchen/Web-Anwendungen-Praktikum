@@ -580,3 +580,415 @@ select:focus-visible {
         transition: none;
     }
 }
+
+
+/* ================================================ BUCHUNGSSEITE ================================================== */
+
+/* ---------- Event-Kurzinfo: Bild links, Text rechts ---------- */
+
+.buchung-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;   /* Breite der Bildspalte */
+  column-gap: 28px;
+  align-content: start;
+}
+
+/* Standard: alles geht über die volle Breite */
+.buchung-main > * {
+  grid-column: 1 / -1;
+}
+
+.buchung-main > .detail-zurueck {
+  grid-row: 1;
+  justify-self: start;
+}
+
+.buchung-main > .buchung-titel {
+  grid-row: 2;
+  margin: 0 0 24px;
+}
+
+/* Bild: linke Spalte, geht über zwei Zeilen */
+.buchung-main .detail-bild {
+  grid-column: 1;
+  grid-row: 3 / span 2;
+  align-self: start;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
+/* Name und Infos: rechte Spalte, neben dem Bild */
+.buchung-main > .buchung-eventname {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: end;
+  margin: 0 0 12px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.buchung-main .detail-infos {
+  grid-column: 2;
+  grid-row: 4;
+  align-self: start;
+}
+ 
+/* ---------- Formular ---------- */
+ 
+.buchung-formular-container {
+  margin-top: 24px;
+  padding: 24px;
+  background: #fbf6ef;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+ 
+.buchung-formular {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+ 
+.buchung-formular > * {
+  grid-column: 1 / -1;
+}
+ 
+.buchung-feld:has(#vorname),
+.buchung-feld:has(#nachname) {
+  grid-column: auto;
+}
+ 
+.buchung-feld {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+ 
+.buchung-feld label {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 14px;
+}
+ 
+.buchung-feld input {
+  flex: 1 1 100%;
+}
+ 
+.buchung-feld input, .buchung-feld select {
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #ddd3c7;
+  border-radius: 6px;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+ 
+.buchung-feld select {
+  min-width: 8rem;
+}
+ 
+.buchung-feld input:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+ 
+.buchung-hinweis {
+  color: var(--muted);
+  font-size: 13px;
+}
+ 
+ 
+/* ---------- Zahlungsmethode, Gesamtbetrag, Button ---------- */
+ 
+.buchung-zahlung {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+ 
+.buchung-zahlung legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+ 
+.buchung-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 15px;
+  cursor: pointer;
+}
+ 
+.buchung-option input {
+  accent-color: var(--orange);
+}
+ 
+.buchung-gesamt {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+ 
+.buchung-gesamt p {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0;
+  font-weight: 700;
+}
+ 
+.buchung-gesamt strong {
+  font-size: 24px;
+}
+
+/* MwSt.-Zeile: kleiner und grau unter dem Gesamtbetrag */
+.buchung-gesamt .buchung-mwst {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+ 
+.buchung-formular .detail-button {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+ 
+ 
+/* ---------- Bestätigung ---------- */
+ 
+.bestaetigung-bereich {
+  --gruen: #3aa65b;
+  --gruen-hell: #e7f4ea;
+  margin-top: 16px;
+}
+ 
+/* Grüner bereich*/
+.bestaetigung-bereich h2,
+.bestaetigung-bereich h2 + p {
+  margin: 0;
+  padding-inline: 16px;
+  background: var(--gruen-hell);
+  text-align: center;
+}
+ 
+.bestaetigung-bereich h2 {
+  padding-top: 32px;
+  padding-bottom: 4px;
+  border-radius: 8px 8px 0 0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+ 
+.bestaetigung-bereich h2 + p {
+  padding-bottom: 32px;
+  border-radius: 0 0 8px 8px;
+  color: var(--muted);
+}
+ 
+/* Grüner Kreis mit Häkchen*/
+.bestaetigung-bereich h2::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: var(--gruen);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 32px;
+  letter-spacing: 0;
+}
+ 
+.bestaetigung-bereich h3 {
+  margin: 28px 0 8px;
+  font-size: 16px;
+}
+ 
+.bestaetigung-tabelle {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+}
+ 
+.bestaetigung-tabelle th,
+.bestaetigung-tabelle td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+ 
+.bestaetigung-tabelle th {
+  width: 50%;
+  color: var(--muted);
+  font-weight: 400;
+}
+ 
+.bestaetigung-tabelle td {
+  font-weight: 700;
+}
+ 
+ 
+.bestaetigung-hinweis {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 14px;
+}
+ 
+ 
+/* ---------- Ansicht kleine Bildschirme ---------- */
+@media (max-width: 650px) {
+
+  /* Eine Spalte: Bild oben, darunter Name und Infos */
+  .buchung-main {
+    grid-template-columns: 1fr;
+  }
+
+  .buchung-main > .detail-zurueck,
+  .buchung-main > .buchung-titel,
+  .buchung-main .detail-bild,
+  .buchung-main > .buchung-eventname,
+  .buchung-main .detail-infos {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .buchung-main .detail-bild {
+    aspect-ratio: 16 / 9;
+  }
+
+  .buchung-main > .buchung-eventname {
+    margin: 16px 0 12px;
+    font-size: 22px;
+  }
+
+  .buchung-formular {
+    grid-template-columns: 1fr;   /* Felder untereinander */
+  }
+
+  .buchung-formular-container {
+    padding: 16px;
+  }
+}
+
+/* ================================================ KONTAKTFORMULAR ================================================== */
+
+.kontakt-main > h1 {
+  margin-top: 0;
+}
+ 
+.kontakt-intro {
+  margin: 0 0 28px;
+  color: var(--muted);
+}
+ 
+.kontakt-formular {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.kontakt-feld {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.kontakt-feld label {
+  color: var(--muted);
+  font-size: 14px;
+}
+ 
+.kontakt-feld input,
+.kontakt-feld select,
+.kontakt-feld textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #ddd3c7;
+  border-radius: 6px;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+ 
+.kontakt-feld textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+ 
+.kontakt-feld input:focus-visible,
+.kontakt-feld select:focus-visible,
+.kontakt-feld textarea:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+ 
+.kontakt-feld select:invalid {
+  color: var(--muted);
+}
+
+.kontakt-feld select option {
+  color: var(--text);
+}
+
+/* Vorname und Nachname nebeneinander */
+.kontakt-zeile {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+ 
+.kontakt-feld--schmal {
+  max-width: calc(50% - 10px);
+}
+ 
+/* Datenschutzhinweis */
+.kontakt-hinweis {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+ 
+.kontakt-hinweis a {
+  color: var(--text);
+  text-decoration: underline;
+}
+ 
+.kontakt-hinweis a:hover {
+  color: var(--orange-hover);
+}
+ 
+.kontakt-formular .detail-button {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+ 
+/* Bestätigung nach dem Absenden (wie in .bestaetigung-bereich in Buchung) */
+.kontakt-bestaetigung .detail-button {
+  margin-top: 24px;
+}
+ 
+/* ---------- Kleine Bildschirme ---------- */
+ 
+@media (max-width: 650px) {
+  /* Vorname und Nachname untereinander */
+  .kontakt-zeile {
+    grid-template-columns: 1fr;
+  }
+ 
+  .kontakt-feld--schmal {
+    max-width: none;
+  }
+}
