@@ -30,6 +30,7 @@ bieten und später die Buchung von Tickets ermöglichen.
 - public/agb.html: Allgemeine Geschäftsbedingungen
 - public/datenschutz.html: Datenschutzhinweise
 - public/css/style.css: Gemeinsames Stylesheet
+- public/css/style.css: Stylesheet für rechtliche Seiten
 - public/images/: Verwendete Bilder
 - public/js/: JavaScript-Dateien
 
@@ -41,12 +42,6 @@ bieten und später die Buchung von Tickets ermöglichen.
 
 Für die bisherige Startseite sind keine zusätzlichen
 Installationen notwendig.
-
-## Aufgabenverteilung
-
-- Eleni: Gestaltung und Umsetzung der Startseite
-- Julia W.: Gestaltung und Umsetzung der Eventdetailseite
-- Julia H.: Zahlungsseite 
 
 ## Beispieldaten
 
