@@ -42,12 +42,6 @@ bieten und später die Buchung von Tickets ermöglichen.
 Für die bisherige Startseite sind keine zusätzlichen
 Installationen notwendig.
 
-## Aufgabenverteilung
-
-- Eleni: Gestaltung und Umsetzung der Startseite
-- Julia W.: Gestaltung und Umsetzung der Eventdetailseite
-- Julia H.: Zahlungsseite 
-
 ## Beispieldaten
 
 Die angegebenen Veranstaltungen, Termine und Preise dienen
