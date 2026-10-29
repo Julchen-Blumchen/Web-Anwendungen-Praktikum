@@ -30,6 +30,7 @@ bieten und später die Buchung von Tickets ermöglichen.
 - public/agb.html: Allgemeine Geschäftsbedingungen
 - public/datenschutz.html: Datenschutzhinweise
 - public/css/style.css: Gemeinsames Stylesheet
+- public/css/style.css: Stylesheet für rechtliche Seiten
 - public/images/: Verwendete Bilder
 - public/js/: JavaScript-Dateien
 
