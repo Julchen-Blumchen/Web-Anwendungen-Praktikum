@@ -635,9 +635,10 @@ select:focus-visible {
   grid-row: 4;
   align-self: start;
 }
- 
+
+
 /* ---------- Formular ---------- */
- 
+
 .buchung-formular-container {
   margin-top: 24px;
   padding: 24px;
@@ -645,39 +646,40 @@ select:focus-visible {
   border: 1px solid var(--border);
   border-radius: 8px;
 }
- 
+
 .buchung-formular {
+  --fehler: #c0392b;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
- 
+
 .buchung-formular > * {
   grid-column: 1 / -1;
 }
- 
+
 .buchung-feld:has(#vorname),
 .buchung-feld:has(#nachname) {
   grid-column: auto;
 }
- 
+
 .buchung-feld {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px 12px;
 }
- 
+
 .buchung-feld label {
   flex-basis: 100%;
   color: var(--muted);
   font-size: 14px;
 }
- 
+
 .buchung-feld input {
   flex: 1 1 100%;
 }
- 
+
 .buchung-feld input, .buchung-feld select {
   padding: 10px 12px;
   background: #fff;
@@ -687,36 +689,63 @@ select:focus-visible {
   font: inherit;
   font-size: 15px;
 }
- 
+
 .buchung-feld select {
   min-width: 8rem;
 }
- 
+
 .buchung-feld input:focus-visible {
   outline: 3px solid var(--orange);
   outline-offset: 2px;
 }
- 
+
 .buchung-hinweis {
   color: var(--muted);
   font-size: 13px;
 }
- 
- 
-/* ---------- Zahlungsmethode, Gesamtbetrag, Button ---------- */
- 
+
+
+/* ---------- Fehlermeldungen ---------- */
+/* Die Meldung steht immer im HTML, ist aber erst sichtbar, wenn das Feld nach einer Eingabe ungültig ist
+   (:user-invalid). Später kann JS den Text der Meldung ändern oder die Klasse .ist-ungueltig setzen. */
+
+.buchung-fehler {
+  display: none;
+  flex-basis: 100%;
+  color: var(--fehler);
+  font-size: 13px;
+}
+
+.buchung-feld:has(:user-invalid) .buchung-fehler,
+.buchung-agb:has(:user-invalid) .buchung-fehler,
+.buchung-feld.ist-ungueltig .buchung-fehler {
+  display: block;
+}
+
+.buchung-feld input:user-invalid,
+.buchung-feld.ist-ungueltig input {
+  border-color: var(--fehler);
+}
+
+.buchung-feld input:user-invalid:focus-visible {
+  outline-color: var(--fehler);
+}
+
+
+/* ---------- Zahlungsmethode ---------- */
+
 .buchung-zahlung {
   margin: 0;
   padding: 0;
   border: none;
 }
- 
+
 .buchung-zahlung legend {
   padding: 0;
   margin-bottom: 8px;
   font-weight: 700;
 }
- 
+
 .buchung-option {
   display: flex;
   align-items: center;
@@ -725,16 +754,68 @@ select:focus-visible {
   font-size: 15px;
   cursor: pointer;
 }
- 
+
 .buchung-option input {
   accent-color: var(--orange);
 }
- 
+
+/* Angaben zur Zahlungsmethode: nur das Feld der gewählten Art ist sichtbar */
+.zahlung-panel {
+  display: none;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.zahlung-panel p {
+  margin: 0 0 12px;
+}
+
+.zahlung-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.buchung-formular:has(input[name="zahlungsmethode"][value="PayPal"]:checked) #zahlung-paypal,
+.buchung-formular:has(input[name="zahlungsmethode"][value="Kreditkarte"]:checked) #zahlung-kreditkarte,
+.buchung-formular:has(input[name="zahlungsmethode"][value="Überweisung"]:checked) #zahlung-ueberweisung {
+  display: block;
+}
+
+.zahlung-felder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.zahlung-voll {
+  grid-column: 1 / -1;
+}
+
+.zahlung-bank {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 16px;
+  margin: 0 0 12px;
+}
+
+.zahlung-bank dt {
+  color: var(--muted);
+}
+
+.zahlung-bank dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+
+/* ---------- Gesamtbetrag, AGB, Button ---------- */
+
 .buchung-gesamt {
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
- 
+
 .buchung-gesamt p {
   display: flex;
   justify-content: space-between;
@@ -742,7 +823,7 @@ select:focus-visible {
   margin: 0;
   font-weight: 700;
 }
- 
+
 .buchung-gesamt strong {
   font-size: 24px;
 }
@@ -754,97 +835,36 @@ select:focus-visible {
   font-size: 13px;
   font-weight: 400;
 }
- 
+
+/* AGB-Checkbox und Datenschutzhinweis */
+.buchung-agb .buchung-option {
+  align-items: flex-start;
+}
+
+.buchung-agb .buchung-option input {
+  margin-top: 3px;
+}
+
+.buchung-agb a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.buchung-agb .buchung-fehler {
+  margin-top: 4px;
+}
+
+.buchung-agb .buchung-hinweis {
+  margin: 8px 0 0;
+}
+
 .buchung-formular .detail-button {
   border: none;
   font-family: inherit;
   cursor: pointer;
 }
- 
- 
-/* ---------- Bestätigung ---------- */
- 
-.bestaetigung-bereich {
-  --gruen: #3aa65b;
-  --gruen-hell: #e7f4ea;
-  margin-top: 16px;
-}
- 
-/* Grüner bereich*/
-.bestaetigung-bereich h2,
-.bestaetigung-bereich h2 + p {
-  margin: 0;
-  padding-inline: 16px;
-  background: var(--gruen-hell);
-  text-align: center;
-}
- 
-.bestaetigung-bereich h2 {
-  padding-top: 32px;
-  padding-bottom: 4px;
-  border-radius: 8px 8px 0 0;
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
- 
-.bestaetigung-bereich h2 + p {
-  padding-bottom: 32px;
-  border-radius: 0 0 8px 8px;
-  color: var(--muted);
-}
- 
-/* Grüner Kreis mit Häkchen*/
-.bestaetigung-bereich h2::before {
-  content: "✓";
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 16px;
-  background: var(--gruen);
-  border-radius: 50%;
-  color: #fff;
-  font-size: 32px;
-  letter-spacing: 0;
-}
- 
-.bestaetigung-bereich h3 {
-  margin: 28px 0 8px;
-  font-size: 16px;
-}
- 
-.bestaetigung-tabelle {
-  width: 100%;
-  margin-bottom: 24px;
-  border-collapse: collapse;
-}
- 
-.bestaetigung-tabelle th,
-.bestaetigung-tabelle td {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-}
- 
-.bestaetigung-tabelle th {
-  width: 50%;
-  color: var(--muted);
-  font-weight: 400;
-}
- 
-.bestaetigung-tabelle td {
-  font-weight: 700;
-}
- 
- 
-.bestaetigung-hinweis {
-  margin: 0 0 24px;
-  color: var(--muted);
-  font-size: 14px;
-}
- 
- 
+
+
 /* ---------- Ansicht kleine Bildschirme ---------- */
 @media (max-width: 650px) {
 
@@ -878,7 +898,94 @@ select:focus-visible {
   .buchung-formular-container {
     padding: 16px;
   }
+
+  .zahlung-felder {
+    grid-template-columns: 1fr;
+  }
 }
+
+
+/* ================================================ BESTÄTIGUNGSSEITE ================================================== */
+
+.bestaetigung-bereich {
+  --gruen: #3aa65b;
+  --gruen-hell: #e7f4ea;
+  margin-top: 16px;
+}
+
+/* Grüner Bereich */
+.bestaetigung-bereich h2,
+.bestaetigung-bereich h2 + p {
+  margin: 0;
+  padding-inline: 16px;
+  background: var(--gruen-hell);
+  text-align: center;
+}
+
+.bestaetigung-bereich h2 {
+  padding-top: 32px;
+  padding-bottom: 4px;
+  border-radius: 8px 8px 0 0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.bestaetigung-bereich h2 + p {
+  padding-bottom: 32px;
+  border-radius: 0 0 8px 8px;
+  color: var(--muted);
+}
+
+/* Grüner Kreis mit Häkchen */
+.bestaetigung-bereich h2::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: var(--gruen);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 32px;
+  letter-spacing: 0;
+}
+
+.bestaetigung-bereich h3 {
+  margin: 28px 0 8px;
+  font-size: 16px;
+}
+
+.bestaetigung-tabelle {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+}
+
+.bestaetigung-tabelle th,
+.bestaetigung-tabelle td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.bestaetigung-tabelle th {
+  width: 50%;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.bestaetigung-tabelle td {
+  font-weight: 700;
+}
+
+.bestaetigung-hinweis {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 
 /* ================================================ KONTAKTFORMULAR ================================================== */
 
