@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Deine Buchungsbestätigung bei EventHub.">
+
+    <title>Buchungsbestätigung – EventHub</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="site-wrapper">
+
+        <header class="site-header">
+
+            <a class="logo"
+               href="index.html"
+               aria-label="EventHub – Startseite">
+
+                <svg class="logo-icon"
+                     viewBox="0 0 32 24"
+                     fill="none"
+                     aria-hidden="true">
+
+                    <g transform="rotate(-18 16 12)">
+                        <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/>
+                        <path d="M21 6v3m0 2v2m0 2v3"/>
+                    </g>
+                </svg>
+
+                <span>EventHub</span>
+            </a>
+
+        </header>
+
+
+        <main id="inhalt" class="event-detail bestaetigung-main">
+
+            <!-- Alle Werte hier sind Platzhalter und werden später per JS aus der Datenbank befüllt -->
+            <section id="buchung-bestaetigung" class="bestaetigung-bereich">
+
+                <h2>Vielen Dank!</h2>
+                <p>Deine Buchung war erfolgreich. Du erhälst in Kürze eine Bestätigung an deine E-Mail.</p>
+
+                <h3>Buchungsdetails</h3>
+
+                <table class="bestaetigung-tabelle">
+                    <tbody>
+                        <tr>
+                            <th>Buchungsnummer</th>
+                            <td id="gebuchte-nummer">EH-2026-000123</td>
+                        </tr>
+                        <tr>
+                            <th>Buchungszeitpunkt</th>
+                            <td>
+                                <time id="gebuchte-zeitpunkt" datetime="2026-11-16T19:35">
+                                    16.11.2026, 19:35 Uhr
+                                </time>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Event</th>
+                            <td id="gebuchte-event">Rock Night</td>
+                        </tr>
+                        <tr>
+                            <th>Datum</th>
+                            <td id="gebuchte-datum">17. April 2027</td>
+                        </tr>
+                        <tr>
+                            <th>Ort</th>
+                            <td id="gebuchte-ort">Stuttgart</td>
+                        </tr>
+                        <tr>
+                            <th>Anzahl Tickets</th>
+                            <td id="gebuchte-tickets">1</td>
+                        </tr>
+                        <tr>
+                            <th>Preis pro Ticket</th>
+                            <td id="gebuchte-einzelpreis">59,90 €</td>
+                        </tr>
+                        <tr>
+                            <th>Gesamtbetrag (brutto)</th>
+                            <td id="gebuchte-gesamtbetrag">59,90 €</td>
+                        </tr>
+                        <tr>
+                            <th>davon MwSt. (19 %)</th>
+                            <td id="gebuchte-mwst">9,56 €</td>
+                        </tr>
+                        <tr>
+                            <th>Zahlungsmethode</th>
+                            <td id="gebuchte-zahlungsmethode">PayPal</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Deine Angaben</h3>
+
+                <table class="bestaetigung-tabelle">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td id="gebuchte-name">Max Mustermann</td>
+                        </tr>
+                        <tr>
+                            <th>E-Mail-Adresse</th>
+                            <td id="gebuchte-email">max.mustermann@beispiel.de</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="index.html" class="detail-button">Zur Startseite →</a>
+
+            </section>
+
+        </main>
+
+
+        <!-- FOOTER: wie auf der Startseite -->
+        <footer class="site-footer">
+
+            <p>© 2026 EventHub</p>
+
+            <nav class="navigation"
+                 aria-label="Fußnavigation">
+
+                <a href="impressum.html">Impressum</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="agb.html">AGB</a>
+                <a href="datenschutz.html">Datenschutz</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>

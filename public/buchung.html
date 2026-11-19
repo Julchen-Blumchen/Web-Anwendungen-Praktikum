@@ -47,6 +47,7 @@
             </a>
 
             <h1 class="buchung-titel">Ticket buchen</h1>
+
             <!-- Event -->
             <img
                 id="buchung-bild"
@@ -114,7 +115,21 @@
 
                 <h2 class="sr-only">Ticket buchen</h2>
 
-                <form id="buchung-formular" class="buchung-formular">
+                <!--
+                    action: leitet im Prototyp zur Bestätigungsseite weiter.
+                    Später per JS/Node ersetzen (fetch POST an die API).
+
+                    data-einzelpreis: Preis pro Ticket in Euro (brutto, mit Punkt als Dezimaltrenner)
+                    data-mwst-satz:   MwSt.-Satz in Prozent
+                    data-event-id:    ID des Events (später aus der Datenbank)
+                    -->
+                <form id="buchung-formular"
+                      class="buchung-formular"
+                      action="bestaetigung.html"
+                      method="get"
+                      data-event-id="1"
+                      data-einzelpreis="59.90"
+                      data-mwst-satz="19">
 
                     <!-- Anzahl Tickets -->
                     <div class="buchung-feld">
@@ -137,17 +152,35 @@
                     <!-- Benutzerinfos -->
                     <div class="buchung-feld">
                         <label for="vorname">Vorname</label>
-                        <input type="text" id="vorname" name="vorname" required>
+                        <input type="text" id="vorname" name="vorname" required
+                               minlength="2" autocomplete="given-name"
+                               pattern="[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ' ’\-]+"
+                               aria-describedby="vorname-fehler">
+                        <span id="vorname-fehler" class="buchung-fehler" role="alert">
+                            Bitte gib einen gültigen Vornamen ein (mind. 2 Buchstaben, keine Ziffern).
+                        </span>
                     </div>
 
                     <div class="buchung-feld">
                         <label for="nachname">Nachname</label>
-                        <input type="text" id="nachname" name="nachname" required>
+                        <input type="text" id="nachname" name="nachname" required
+                               minlength="2" autocomplete="family-name"
+                               pattern="[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ' ’\-]+"
+                               aria-describedby="nachname-fehler">
+                        <span id="nachname-fehler" class="buchung-fehler" role="alert">
+                            Bitte gib einen gültigen Nachnamen ein (mind. 2 Buchstaben, keine Ziffern).
+                        </span>
                     </div>
 
                     <div class="buchung-feld">
                         <label for="e-mail">E-Mail-Adresse</label>
-                        <input type="email" id="e-mail" name="e-mail" required>
+                        <input type="email" id="e-mail" name="e-mail" required
+                               autocomplete="email"
+                               pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}"
+                               aria-describedby="e-mail-fehler">
+                        <span id="e-mail-fehler" class="buchung-fehler" role="alert">
+                            Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.
+                        </span>
                     </div>
 
                     <!-- Zahlungsmethode -->
@@ -167,6 +200,90 @@
                         </label>
                     </fieldset>
 
+                    <!-- Angaben zur gewählten Zahlungsmethode -->
+                    <div class="buchung-zahlungsdetails">
+
+                        <!-- PayPal -->
+                        <div id="zahlung-paypal" class="zahlung-panel">
+                            <p>Du wirst nach dem Klick auf "Buchung bestätigen" zu PayPal weitergeleitet, um die Zahlung abzuschließen.</p>
+                        </div>
+
+                        <!--
+                            Kreditkarte
+                            Die Felder sind required, aber zunächst disabled (PayPal ist Standard).
+                            buchung.js schaltet sie nur bei gewählter Kreditkarte frei.
+                            Bewusst ohne name-Attribut: Kartendaten dürfen nie in der URL landen
+                            und werden später gar nicht mit dem Formular abgeschickt.
+                        -->
+                        <div id="zahlung-kreditkarte" class="zahlung-panel">
+                            <div class="zahlung-felder">
+
+                                <div class="buchung-feld zahlung-voll">
+                                    <label for="kk-inhaber">Karteninhaber</label>
+                                    <input type="text" id="kk-inhaber" required disabled
+                                           minlength="2" autocomplete="cc-name"
+                                           pattern="[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ' ’\-]+"
+                                           aria-describedby="kk-inhaber-fehler">
+                                    <span id="kk-inhaber-fehler" class="buchung-fehler" role="alert">
+                                        Bitte gib den Namen des Karteninhabers ein (mind. 2 Buchstaben).
+                                    </span>
+                                </div>
+
+                                <div class="buchung-feld zahlung-voll">
+                                    <label for="kk-nummer">Kartennummer</label>
+                                    <input type="text" id="kk-nummer" required disabled
+                                           inputmode="numeric" autocomplete="cc-number"
+                                           placeholder="1234 5678 9012 3456"
+                                           pattern="(?:\d ?){12,18}\d"
+                                           aria-describedby="kk-nummer-fehler">
+                                    <span id="kk-nummer-fehler" class="buchung-fehler" role="alert">
+                                        Bitte gib eine gültige Kartennummer ein (13 bis 19 Ziffern).
+                                    </span>
+                                </div>
+
+                                <div class="buchung-feld">
+                                    <label for="kk-gueltig">Gültig bis</label>
+                                    <input type="text" id="kk-gueltig" required disabled
+                                           autocomplete="cc-exp" placeholder="MM/JJ"
+                                           pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                                           aria-describedby="kk-gueltig-fehler">
+                                    <span id="kk-gueltig-fehler" class="buchung-fehler" role="alert">
+                                        Bitte gib das Ablaufdatum im Format MM/JJ ein.
+                                    </span>
+                                </div>
+
+                                <div class="buchung-feld">
+                                    <label for="kk-cvc">Prüfnummer (CVC)</label>
+                                    <input type="text" id="kk-cvc" required disabled
+                                           inputmode="numeric" autocomplete="cc-csc"
+                                           maxlength="4" placeholder="123"
+                                           pattern="[0-9]{3,4}"
+                                           aria-describedby="kk-cvc-fehler">
+                                    <span id="kk-cvc-fehler" class="buchung-fehler" role="alert">
+                                        Bitte gib die 3- oder 4-stellige Prüfnummer ein.
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Überweisung -->
+                        <div id="zahlung-ueberweisung" class="zahlung-panel">
+                            <p>Du bekommst nach dem Klick auf "Buchung bestätigen" eine E-Mail mit den Überweisungsinformationen.</p>
+                            <dl class="zahlung-bank">
+                                <dt>Empfänger</dt>
+                                <dd>EventHub GmbH</dd>
+                                <dt>IBAN</dt>
+                                <dd>DE89 3704 0044 0532 0130 00</dd>
+                                <dt>BIC</dt>
+                                <dd>COBADEFFXXX</dd>
+                                <dt>Verwendungszweck</dt>
+                                <dd>Deine Buchungsnummer (siehst du nach der Buchung)</dd>
+                            </dl>
+                        </div>
+
+                    </div>
+
                     <!-- Gesamtbetrag -->
                     <div class="buchung-gesamt">
                         <p>Gesamtbetrag (brutto)
@@ -177,59 +294,30 @@
                         </p>
                     </div>
 
+                    <!-- AGB und Datenschutz -->
+                    <div class="buchung-agb">
+                        <label class="buchung-option">
+                            <input type="checkbox" id="agb" name="agb" required
+                                   aria-describedby="agb-fehler">
+                            <span>Ich habe die
+                                <a href="agb.html" target="_blank" rel="noopener">AGB</a>
+                                gelesen und akzeptiere sie.</span>
+                        </label>
+                        <span id="agb-fehler" class="buchung-fehler" role="alert">
+                            Bitte akzeptiere die AGB, um deine Buchung abzuschließen.
+                        </span>
+                        <p class="buchung-hinweis">
+                            Informationen zur Verarbeitung deiner Daten findest du in unserer
+                            <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+                        </p>
+                    </div>
+
                     <!-- Button zur Buchung -->
                     <button type="submit" class="detail-button">
                         Buchung bestätigen →
                     </button>
 
                 </form>
-            </section>
-
-
-            <!-- BESTÄTIGUNG NACH DEM KLICK AUF DEN BUTTON -->
-            <!-- Am Ende der nächsten Zeile "hidden" einfügen, damit erst nach dem Klick sichtbar -->
-            <section id="buchung-bestaetigung" class="bestaetigung-bereich">
-
-                <h2>Vielen Dank!</h2>
-                <p>Deine Buchung war erfolgreich. Du erhälst in Kürze eine Bestätigung an deine E-Mail.</p>
-
-                <h3>Buchungsdetails</h3>
-
-                <table class="bestaetigung-tabelle">
-                    <tbody>
-                        <tr>
-                            <th>Event</th>
-                            <td id="gebuchte-event">Rock Night</td>
-                        </tr>
-                        <tr>
-                            <th>Datum</th>
-                            <td id="gebuchte-datum">17. April 2027</td>
-                        </tr>
-                        <tr>
-                            <th>Ort</th>
-                            <td id="gebuchte-ort">Stuttgart</td>
-                        </tr>
-                        <tr>
-                            <th>Anzahl Tickets</th>
-                            <td id="gebuchte-tickets">1</td>
-                        </tr>
-                        <tr>
-                            <th>Gesamtbetrag (brutto)</th>
-                            <td id="gebuchte-gesamtbetrag">59,90 €</td>
-                        </tr>
-                        <tr>
-                            <th>davon MwSt. (19 %)</th>
-                            <td id="gebuchte-mwst">9,56 €</td>
-                        </tr>
-                        <tr>
-                            <th>Zahlungsmethode</th>
-                            <td id="gebuchte-zahlungsmethode">PayPal</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <a href="index.html" class="detail-button">Zur Startseite →</a>
-
             </section>
 
         </main>
@@ -253,6 +341,8 @@
         </footer>
 
     </div>
+
+    <script src="js/buchung.js"></script>
 
 </body>
 </html>
