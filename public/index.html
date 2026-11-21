@@ -215,31 +215,86 @@
   </div>
 
   <!-- Kleine JavaScript-Funktion für den Bundeslandfilter -->
-  <script>
-    const bundesland = document.querySelector('#bundesland');
-    const kacheln = document.querySelectorAll('.event-card');
+<script>
+  const bundeslandFeld = document.getElementById("bundesland");
+  const eventGrid = document.querySelector(".event-grid");
+  const kartenVorlage = eventGrid.querySelector(".event-card").cloneNode(true);
+  const filterStatus = document.getElementById("filter-status");
+  const hinweis = document.getElementById("keine-events");
 
-    bundesland.addEventListener('change', () => {
-      let anzahl = 0;
+  const euroFormat = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR"
+  });
 
-      kacheln.forEach(kachel => {
-        const passt =
-          !bundesland.value ||
-          kachel.dataset.bundesland === bundesland.value;
+  const datumFormat = new Intl.DateTimeFormat("de-DE", {
+    dateStyle: "medium"
+  });
 
-        kachel.hidden = !passt;
+  let letzteAnfrage = 0;
 
-        if (passt) {
-          anzahl++;
-        }
-      });
+  function erstelleKarte(event) {
+    const karte = kartenVorlage.cloneNode(true);
 
-      document.querySelector('#keine-events').hidden = anzahl > 0;
+    const bild = karte.querySelector(".event-image");
+    bild.src = event.bild;
+    bild.alt = event.alt_bild;
 
-      document.querySelector('#filter-status').textContent =
-        `${anzahl} Events gefunden.`;
-    });
-  </script>
+    const datum = karte.querySelector(".event-date");
+    datum.dateTime = event.datum;
+    datum.textContent = datumFormat.format(new Date(event.datum + "T00:00:00"));
+
+    karte.querySelector("h2").textContent = event.name;
+    karte.querySelector(".event-city").textContent = event.stadt;
+    karte.querySelector(".event-price").textContent =
+      euroFormat.format(event.preis_cent / 100);
+
+    const details = karte.querySelector(".details-button");
+    details.href = "event.html?id=" + encodeURIComponent(event.id);
+    details.setAttribute("aria-label", "Details zu " + event.name);
+
+    karte.removeAttribute("data-bundesland");
+    return karte;
+  }
+
+  async function ladeEvents() {
+    const anfrage = ++letzteAnfrage;
+    const parameter = new URLSearchParams({ bundesland: bundeslandFeld.value });
+
+    eventGrid.replaceChildren();
+    hinweis.hidden = true;
+    filterStatus.textContent = "Events werden geladen.";
+
+    try {
+      const antwort = await fetch("/api/events?" + parameter);
+      if (!antwort.ok) {
+        throw new Error("Events konnten nicht geladen werden.");
+      }
+
+      const events = await antwort.json();
+
+      // Wenn inzwischen neu gewählt wurde, zählt nur die neuere Anfrage.
+      if (anfrage !== letzteAnfrage) return;
+
+      for (const event of events) {
+        eventGrid.append(erstelleKarte(event));
+      }
+
+      filterStatus.textContent = `${events.length} Events gefunden.`;
+      hinweis.textContent = "Für diese Auswahl gibt es aktuell keine Events.";
+      hinweis.hidden = events.length > 0;
+    } catch {
+      if (anfrage !== letzteAnfrage) return;
+
+      hinweis.textContent = "Die Events konnten nicht geladen werden.";
+      hinweis.hidden = false;
+      filterStatus.textContent = hinweis.textContent;
+    }
+  }
+
+  bundeslandFeld.addEventListener("change", ladeEvents);
+  ladeEvents();
+</script>
   <script>
   const dropdown = document.getElementById("bundesland");
   const vorschau = document.getElementById("auswahl-vorschau");
