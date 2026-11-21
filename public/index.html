@@ -96,6 +96,7 @@
               <path d="m6 9 6 6 6-6" />
             </svg>
           </label>
+          <p id="auswahl-vorschau"></p>
         </div>
       </section>
 
@@ -239,5 +240,13 @@
         `${anzahl} Events gefunden.`;
     });
   </script>
+  <script>
+  const dropdown = document.getElementById("bundesland");
+  const vorschau = document.getElementById("auswahl-vorschau");
+
+  dropdown.addEventListener("change", function () {
+    vorschau.textContent = dropdown.value;
+  });
+</script>
 </body>
 </html>
