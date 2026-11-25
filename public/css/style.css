@@ -83,7 +83,32 @@ select:focus-visible {
 
 /* Kopfbereich und Navigation */
 
-.site-header,
+.site-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 48px 40px 40px;
+}
+
+.header-navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-navigation a {
+  white-space: nowrap;
+  color: var(--text, #20242a);
+  text-decoration: none;
+}
+
+.header-navigation a:hover {
+  color: #a7471e;
+}
 .site-footer {
   display: flex;
   align-items: center;
