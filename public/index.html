@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-        content="Entdecke Konzerte, Festivals und weitere Events in deiner Region mit EventHub.">
+  <meta
+    name="description"
+    content="Entdecke Konzerte, Festivals und weitere Events in deiner Region mit EventHub."
+  >
 
   <title>EventHub – Deine Events in deiner Region</title>
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
 </head>
 
 <body>
@@ -16,16 +19,18 @@
 
   <div class="site-wrapper">
 
-    <!-- Kopfbereich -->
     <header class="site-header">
-      <a class="logo"
-         href="index.html"
-         aria-label="EventHub – Startseite">
-
-        <svg class="logo-icon"
-             viewBox="0 0 32 24"
-             fill="none"
-             aria-hidden="true">
+      <a
+        class="logo"
+        href="index.html"
+        aria-label="EventHub – Startseite"
+      >
+        <svg
+          class="logo-icon"
+          viewBox="0 0 32 24"
+          fill="none"
+          aria-hidden="true"
+        >
           <g transform="rotate(-18 16 12)">
             <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z" />
             <path d="M21 6v3m0 2v2m0 2v3" />
@@ -35,16 +40,26 @@
         <span>EventHub</span>
       </a>
 
+      <nav
+        class="navigation header-navigation"
+        aria-label="Hauptnavigation"
+      >
+        <a href="impressum.html">Impressum</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
     </header>
 
     <main id="inhalt">
 
-      <!-- Titelbild und Bundeslandauswahl -->
       <section class="hero" aria-labelledby="hero-title">
-        <img class="hero-image"
-             src="images/Startseite_Bild.png"
-             alt=""
-             fetchpriority="high">
+        <img
+          class="hero-image"
+          src="images/Startseite_Bild.png"
+          alt=""
+          fetchpriority="high"
+        >
 
         <div class="hero-content">
           <h1 id="hero-title">
@@ -53,154 +68,138 @@
           </h1>
 
           <p>
-            Konzerte, Festivals und mehr. Hier einfach Tickets finden! 
+            Konzerte, Festivals und mehr. Hier einfach Tickets finden!
           </p>
 
-          <label class="region-filter" for="bundesland">
-            <svg class="location-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 aria-hidden="true">
-              <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
-              <circle cx="12" cy="10" r="2" />
-            </svg>
+          <div class="event-filter">
 
-            <span class="sr-only">
-              Events nach Bundesland filtern
-            </span>
+            <!-- Bestehender Bundeslandfilter -->
+            <label class="region-filter" for="bundesland">
+              <svg
+                class="location-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+                <circle cx="12" cy="10" r="2" />
+              </svg>
 
-            <select id="bundesland" name="bundesland">
-              <option value="">Bundesland auswählen</option>
-              <option value="Baden-Württemberg">Baden-Württemberg</option>
-              <option value="Bayern">Bayern</option>
-              <option value="Berlin">Berlin</option>
-              <option value="Brandenburg">Brandenburg</option>
-              <option value="Bremen">Bremen</option>
-              <option value="Hamburg">Hamburg</option>
-              <option value="Hessen">Hessen</option>
-              <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
-              <option value="Niedersachsen">Niedersachsen</option>
-              <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
-              <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
-              <option value="Saarland">Saarland</option>
-              <option value="Sachsen">Sachsen</option>
-              <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
-              <option value="Schleswig-Holstein">Schleswig-Holstein</option>
-              <option value="Thüringen">Thüringen</option>
-            </select>
+              <span class="sr-only">
+                Events nach Bundesland filtern
+              </span>
 
-            <svg class="chevron-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 aria-hidden="true">
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </label>
+              <select id="bundesland" name="bundesland">
+                <option value="">Bundesland auswählen</option>
+                <option value="Baden-Württemberg">Baden-Württemberg</option>
+                <option value="Bayern">Bayern</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Brandenburg">Brandenburg</option>
+                <option value="Bremen">Bremen</option>
+                <option value="Hamburg">Hamburg</option>
+                <option value="Hessen">Hessen</option>
+                <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+                <option value="Niedersachsen">Niedersachsen</option>
+                <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+                <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+                <option value="Saarland">Saarland</option>
+                <option value="Sachsen">Sachsen</option>
+                <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+                <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+                <option value="Thüringen">Thüringen</option>
+              </select>
+
+              <svg
+                class="chevron-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </label>
+
+            <!-- Kategorien werden aus SQLite geladen -->
+            <label class="region-filter" for="kategorie">
+              <svg
+                class="location-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="M9 6h12M9 12h12M9 18h12M3 6h1M3 12h1M3 18h1" />
+              </svg>
+
+              <span class="sr-only">
+                Events nach Kategorie filtern
+              </span>
+
+              <select id="kategorie" name="kategorie" disabled>
+                <option value="">Kategorien werden geladen …</option>
+              </select>
+
+              <svg
+                class="chevron-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </label>
+
+          </div>
+
+          <p
+            id="kategorie-status"
+            class="filter-message"
+            role="alert"
+            hidden
+          ></p>
+
           <p id="auswahl-vorschau"></p>
         </div>
       </section>
 
-      <!-- Drei Eventkacheln -->
       <section class="events" aria-label="Verfügbare Events">
-        <div class="event-grid">
 
-          <article class="event-card"
-                   data-bundesland="Baden-Württemberg">
+        <div class="event-grid" aria-busy="true"></div>
 
-            <img class="event-image"
-                 src="images/Eventbild_1.png"
-                 alt="Rockband mit Gitarren auf einer Bühne vor jubelndem Publikum"
-                 width="1448"
-                 height="1086"
-                 loading="lazy">
-
-            <div class="event-content">
-              <time class="event-date" datetime="2027-04-17">
-                17. Apr. 2027
-              </time>
-
-              <h2>Rock Night</h2>
-              <p class="event-city">Stuttgart</p>
-              <p class="event-price">59,90 €</p>
-
-              <a class="details-button"
-                 href="event.html?id=rock-night"
-                 aria-label="Details zu Rock Night">
-                Details
-              </a>
-            </div>
-          </article>
-
-          <article class="event-card"
-                   data-bundesland="Baden-Württemberg">
-
-            <img class="event-image"
-                 src="images/Eventbild_2.png"
-                 alt="Besucher an beleuchteten Foodtrucks und Essensständen am Abend"
-                 width="1448"
-                 height="1086"
-                 loading="lazy">
+        <!-- JavaScript kopiert diese Vorlage für jedes geladene Event -->
+        <template id="event-karten-vorlage">
+          <article class="event-card">
+            <img
+              class="event-image"
+              alt=""
+              width="1448"
+              height="1086"
+              loading="lazy"
+            >
 
             <div class="event-content">
-              <time class="event-date" datetime="2027-05-08">
-                08. Mai 2027
-              </time>
-
-              <h2>Streetfood Festival</h2>
-              <p class="event-city">Mannheim</p>
-              <p class="event-price">14,90 €</p>
-
-              <a class="details-button"
-                 href="event.html?id=streetfood-festival"
-                 aria-label="Details zum Streetfood Festival">
-                Details
-              </a>
+              <time class="event-date"></time>
+              <h2></h2>
+              <p class="event-city"></p>
+              <p class="event-price"></p>
+              <a class="details-button">Details</a>
             </div>
           </article>
+        </template>
 
-          <article class="event-card"
-                   data-bundesland="Baden-Württemberg">
+        <p
+          id="filter-status"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+        ></p>
 
-            <img class="event-image"
-                 src="images/Eventbild_4.png"
-                 alt="Zuschauer auf einer Wiese vor einer Kinoleinwand unter freiem Himmel"
-                 width="1448"
-                 height="1086"
-                 loading="lazy">
-
-            <div class="event-content">
-              <time class="event-date" datetime="2027-06-19">
-                19. Juni 2027
-              </time>
-
-              <h2>Open-Air-Kino</h2>
-              <p class="event-city">Freiburg</p>
-              <p class="event-price">12,90 €</p>
-
-              <a class="details-button"
-                 href="event.html?id=open-air-kino"
-                 aria-label="Details zum Open-Air-Kino">
-                Details
-              </a>
-            </div>
-          </article>
-
-        </div>
-
-        <p id="filter-status"
-           class="sr-only"
-           role="status"
-           aria-live="polite"></p>
-
-        <p id="keine-events" class="empty-message" hidden>
-          Für dieses Bundesland gibt es aktuell keine Events.
-          Wähle „Bundesland auswählen“, um wieder alle drei
-          Beispiel-Events zu sehen.
+        <p id="keine-events" class="empty-message">
+          Events werden geladen …
         </p>
+
       </section>
     </main>
 
-    <!-- Fußbereich -->
     <footer class="site-footer">
       <p>© 2026 EventHub</p>
 
@@ -214,94 +213,10 @@
 
   </div>
 
-  <!-- Kleine JavaScript-Funktion für den Bundeslandfilter -->
-<script>
-  const bundeslandFeld = document.getElementById("bundesland");
-  const eventGrid = document.querySelector(".event-grid");
-  const kartenVorlage = eventGrid.querySelector(".event-card").cloneNode(true);
-  const filterStatus = document.getElementById("filter-status");
-  const hinweis = document.getElementById("keine-events");
-
-  const euroFormat = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR"
-  });
-
-  const datumFormat = new Intl.DateTimeFormat("de-DE", {
-    dateStyle: "medium"
-  });
-
-  let letzteAnfrage = 0;
-
-  function erstelleKarte(event) {
-    const karte = kartenVorlage.cloneNode(true);
-
-    const bild = karte.querySelector(".event-image");
-    bild.src = event.bild;
-    bild.alt = event.alt_bild;
-
-    const datum = karte.querySelector(".event-date");
-    datum.dateTime = event.datum;
-    datum.textContent = datumFormat.format(new Date(event.datum + "T00:00:00"));
-
-    karte.querySelector("h2").textContent = event.name;
-    karte.querySelector(".event-city").textContent = event.stadt;
-    karte.querySelector(".event-price").textContent =
-      euroFormat.format(event.preis_cent / 100);
-
-    const details = karte.querySelector(".details-button");
-    details.href = "event.html?id=" + encodeURIComponent(event.id);
-    details.setAttribute("aria-label", "Details zu " + event.name);
-
-    karte.removeAttribute("data-bundesland");
-    return karte;
-  }
-
-  async function ladeEvents() {
-    const anfrage = ++letzteAnfrage;
-    const parameter = new URLSearchParams({ bundesland: bundeslandFeld.value });
-
-    eventGrid.replaceChildren();
-    hinweis.hidden = true;
-    filterStatus.textContent = "Events werden geladen.";
-
-    try {
-      const antwort = await fetch("/api/events?" + parameter);
-      if (!antwort.ok) {
-        throw new Error("Events konnten nicht geladen werden.");
-      }
-
-      const events = await antwort.json();
-
-      // Wenn inzwischen neu gewählt wurde, zählt nur die neuere Anfrage.
-      if (anfrage !== letzteAnfrage) return;
-
-      for (const event of events) {
-        eventGrid.append(erstelleKarte(event));
-      }
-
-      filterStatus.textContent = `${events.length} Events gefunden.`;
-      hinweis.textContent = "Für diese Auswahl gibt es aktuell keine Events.";
-      hinweis.hidden = events.length > 0;
-    } catch {
-      if (anfrage !== letzteAnfrage) return;
-
-      hinweis.textContent = "Die Events konnten nicht geladen werden.";
-      hinweis.hidden = false;
-      filterStatus.textContent = hinweis.textContent;
-    }
-  }
-
-  bundeslandFeld.addEventListener("change", ladeEvents);
-  ladeEvents();
-</script>
-  <script>
-  const dropdown = document.getElementById("bundesland");
-  const vorschau = document.getElementById("auswahl-vorschau");
-
-  dropdown.addEventListener("change", function () {
-    vorschau.textContent = dropdown.value;
-  });
-</script>
+  <noscript>
+    <p class="empty-message">
+      Bitte aktiviere JavaScript, um Veranstaltungen zu laden und zu filtern.
+    </p>
+  </noscript>
 </body>
 </html>

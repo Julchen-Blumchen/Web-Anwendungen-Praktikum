@@ -1,257 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Entdecke alle Informationen zu deinem Event bei EventHub."
+  >
 
-    <meta name="description"
-          content="Entdecke alle Informationen zu deinem Event bei EventHub.">
+  <title>Eventdetails – EventHub</title>
 
-    <title>Eventdetails – EventHub</title>
-
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#inhalt">
+    Zum Inhalt springen
+  </a>
 
-    <a class="skip-link" href="#inhalt">
-        Zum Inhalt springen
-    </a>
+  <div class="site-wrapper">
 
-    <div class="site-wrapper">
+    <header class="site-header">
+      <a
+        class="logo"
+        href="index.html"
+        aria-label="EventHub – Startseite"
+      >
+        <svg
+          class="logo-icon"
+          viewBox="0 0 32 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <g transform="rotate(-18 16 12)">
+            <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z" />
+            <path d="M21 6v3m0 2v2m0 2v3" />
+          </g>
+        </svg>
 
-        <!-- HEADER: wie auf der Startseite -->
-        <header class="site-header">
+        <span>EventHub</span>
+      </a>
+    </header>
 
-            <a class="logo"
-               href="index.html"
-               aria-label="EventHub – Startseite">
+    <main id="inhalt" class="event-detail">
 
-                <svg class="logo-icon"
-                     viewBox="0 0 32 24"
-                     fill="none"
-                     aria-hidden="true">
+      <a href="index.html" class="detail-zurueck">
+        ← Zurück zur Übersicht
+      </a>
 
-                    <g transform="rotate(-18 16 12)">
-                        <path d="M3 5h26v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/>
-                        <path d="M21 6v3m0 2v2m0 2v3"/>
-                    </g>
-                </svg>
+      <p
+        id="detail-status"
+        class="detail-status"
+        role="status"
+        aria-live="polite"
+      >
+        Event wird geladen …
+      </p>
 
-                <span>EventHub</span>
-            </a>
+      <!-- Erst nach erfolgreichem API-Aufruf sichtbar -->
+      <div id="event-inhalt" hidden>
 
-        </header>
+        <img
+          id="detail-bild"
+          class="detail-bild"
+          alt=""
+        >
 
+        <h1 id="detail-name"></h1>
 
-        <!-- HAUPTINHALT -->
-        <main id="inhalt" class="event-detail">
-
-            <a href="index.html" class="detail-zurueck">
-                ← Zurück zur Übersicht
-            </a>
-
-            <!-- Eventbild -->
-            <img
-                id="detail-bild"
-                class="detail-bild"
-                src="images/Eventbild_1.png"
-                alt="Rockband auf einer Bühne"
+        <section
+          class="detail-infos"
+          aria-label="Eventinformationen"
+        >
+          <p>
+            <svg
+              class="detail-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
             >
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M7 3v4M17 3v4M3 10h18" />
+              <path d="M7 14h2M12 14h2M7 18h2M12 18h2" />
+            </svg>
 
-            <!-- Eventname -->
-            <h1 id="detail-name">Rock Night</h1>
+            <time id="detail-datum"></time>
+          </p>
 
+          <p>
+            <svg
+              class="detail-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
 
-            <!-- Eventinformationen -->
-            <section class="detail-infos"
-                     aria-label="Eventinformationen">
+            <span id="detail-ort"></span>
+          </p>
 
-                <!-- Datum -->
-                <p>
-                    <svg class="detail-icon"
-                         viewBox="0 0 24 24"
-                         fill="none"
-                         aria-hidden="true">
-                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                        <path d="M7 3v4M17 3v4M3 10h18"/>
-                        <path d="M7 14h2M12 14h2M7 18h2M12 18h2"/>
-                    </svg>
+          <p>
+            <svg
+              class="detail-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z" />
+              <path d="M15 6v3m0 2v2m0 2v3" />
+            </svg>
 
-                    <time id="detail-datum" datetime="2027-04-17">
-                        17. April 2027
-                    </time>
-                </p>
+            <span id="detail-preis"></span>
+          </p>
+        </section>
 
-                <!-- Veranstaltungsort -->
-                <p>
-                    <svg class="detail-icon"
-                         viewBox="0 0 24 24"
-                         fill="none"
-                         aria-hidden="true">
-                        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
-                        <circle cx="12" cy="10" r="2.5"/>
-                    </svg>
+        <section
+          class="detail-beschreibung"
+          aria-label="Beschreibung"
+        >
+          <p id="detail-text"></p>
+        </section>
 
-                    <span id="detail-ort">
-                        Stuttgart
-                    </span>
-                </p>
+        <a id="detail-buchen" class="detail-button">
+          Ticket buchen →
+        </a>
 
-                <!-- Ticketpreis -->
-                <p>
-                    <svg class="detail-icon"
-                         viewBox="0 0 24 24"
-                         fill="none"
-                         aria-hidden="true">
-                        <path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Z"/>
-                        <path d="M15 6v3m0 2v2m0 2v3"/>
-                    </svg>
+      </div>
 
-                    <span id="detail-preis">
-                        59,90 € pro Ticket
-                    </span>
-                </p>
+      <noscript>
+        <p>
+          Bitte aktiviere JavaScript, um die Veranstaltungsdetails zu laden.
+        </p>
+      </noscript>
 
-            </section>
+    </main>
 
+    <footer class="site-footer">
+      <p>© 2026 EventHub</p>
 
-            <!-- Beschreibung -->
-            <section class="detail-beschreibung"
-                     aria-label="Beschreibung">
+      <nav class="navigation" aria-label="Fußnavigation">
+        <a href="impressum.html">Impressum</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </footer>
 
-                <p id="detail-text">
-                    Erlebe einen unvergesslichen Abend
-                    mit Live-Musik und großartiger Stimmung.
-                </p>
-
-            </section>
-
-
-            <!-- Buchungsbutton -->
-            <a id="detail-buchen"
-               href="buchung.html?id=rock-night"
-               class="detail-button">
-
-                Ticket buchen →
-
-            </a>
-
-        </main>
-
-
-        <!-- FOOTER: wie auf der Startseite -->
-        <footer class="site-footer">
-
-            <p>© 2026 EventHub</p>
-
-            <nav class="navigation"
-                 aria-label="Fußnavigation">
-
-                <a href="impressum.html">Impressum</a>
-                <a href="kontakt.html">Kontakt</a>
-                <a href="agb.html">AGB</a>
-                <a href="datenschutz.html">Datenschutz</a>
-
-            </nav>
-
-        </footer>
-
-    </div>
-
-
-    <!-- Eventdaten für den Frontend-Prototyp -->
-    <script>
-        const events = {
-            "rock-night": {
-                name: "Rock Night",
-                datum: "17. April 2027",
-                datumISO: "2027-04-17",
-                ort: "Stuttgart",
-                preis: "59,90 €",
-                bild: "images/Eventbild_1.png",
-                bildAlt: "Rockband auf einer Bühne",
-                beschreibung:
-                    "Erlebe einen unvergesslichen Abend " +
-                    "mit mitreißender Rockmusik und " +
-                    "großartiger Stimmung."
-            },
-
-            "streetfood-festival": {
-                name: "Streetfood Festival",
-                datum: "08. Mai 2027",
-                datumISO: "2027-05-08",
-                ort: "Mannheim",
-                preis: "14,90 €",
-                bild: "images/Eventbild_2.png",
-                bildAlt: "Besucher an Foodtrucks",
-                beschreibung:
-                    "Entdecke leckere Spezialitäten " +
-                    "aus aller Welt und genieße " +
-                    "einen abwechslungsreichen Tag."
-            },
-
-            "open-air-kino": {
-                name: "Open-Air-Kino",
-                datum: "19. Juni 2027",
-                datumISO: "2027-06-19",
-                ort: "Freiburg",
-                preis: "12,90 €",
-                bild: "images/Eventbild_4.png",
-                bildAlt: "Kinoleinwand unter freiem Himmel",
-                beschreibung:
-                    "Genieße einen besonderen Kinoabend " +
-                    "unter freiem Himmel in entspannter " +
-                    "Atmosphäre."
-            }
-        };
-
-        // Event-ID aus der Adresse lesen
-        const parameter = new URLSearchParams(window.location.search);
-        const eventID = parameter.get("id") || "rock-night";
-
-        // Passendes Event auswählen
-        const event = Object.hasOwn(events, eventID)
-            ? events[eventID]
-            : null;
-
-        if (event) {
-            document.querySelector("#detail-name").textContent =
-                event.name;
-
-            const datum = document.querySelector("#detail-datum");
-            datum.textContent = event.datum;
-            datum.dateTime = event.datumISO;
-
-            document.querySelector("#detail-ort").textContent =
-                event.ort;
-
-            document.querySelector("#detail-preis").textContent =
-                event.preis + " pro Ticket";
-
-            document.querySelector("#detail-text").textContent =
-                event.beschreibung;
-
-            const bild = document.querySelector("#detail-bild");
-            bild.src = event.bild;
-            bild.alt = event.bildAlt;
-
-            document.querySelector("#detail-buchen").href =
-                "buchung.html?id=" + encodeURIComponent(eventID);
-
-            document.title = event.name + " – EventHub";
-        } else {
-            document.querySelector("#detail-name").textContent =
-                "Event nicht gefunden";
-
-            document.querySelector("#detail-bild").hidden = true;
-            document.querySelector(".detail-infos").hidden = true;
-            document.querySelector(".detail-beschreibung").hidden = true;
-            document.querySelector("#detail-buchen").hidden = true;
-        }
-    </script>
-
+  </div>
 </body>
 </html>

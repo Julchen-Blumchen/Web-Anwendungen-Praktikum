@@ -1186,3 +1186,46 @@ select:focus-visible {
         font-size: 14px;
     }
 }
+
+/* Bundesland und Kategorie: auf großen Bildschirmen nebeneinander. */
+.event-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.event-filter .region-filter {
+  flex: 1 1 240px;
+  width: auto;
+  max-width: 360px;
+  min-width: 0;
+}
+
+.event-filter select:disabled {
+  cursor: wait;
+  color: var(--muted);
+}
+
+.hero .filter-message {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.detail-status {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+/* Auf kleinen Bildschirmen stehen die Filter untereinander. */
+@media (max-width: 650px) {
+  .event-filter {
+    flex-direction: column;
+  }
+
+  .event-filter .region-filter {
+    flex-basis: auto;
+    width: 100%;
+    max-width: none;
+  }
+}
